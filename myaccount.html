@@ -30,12 +30,23 @@
 </nav>
 
 <!-- ===== MY ACCOUNT ===== -->
-<section id="myaccount" style="max-width:800px; margin:0 auto; padding:4rem 2rem;">
-  <h2>MY BOOKINGS</h2>
-  <div class="accent-bar yellow-bar"></div>
-  <p class="section-sub">Your upcoming booked classes.</p>
+<section id="myaccount" class="account-section">
+  <div class="account-grid">
 
-  <ul id="bookingList"></ul>
+    <div class="account-card">
+      <h2>CURRENT MEMBERSHIP</h2>
+      <div class="accent-bar yellow-bar"></div>
+      <p id="membershipDisplay" class="membership-value">No membership yet</p>
+    </div>
+
+    <div class="account-card">
+      <h2>MY BOOKINGS</h2>
+      <div class="accent-bar yellow-bar"></div>
+      <p class="section-sub">Your upcoming booked classes.</p>
+      <ul id="bookingList"></ul>
+    </div>
+
+  </div>
 </section>
 
 <!-- ===== FOOTER ===== -->

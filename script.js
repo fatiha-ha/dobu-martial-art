@@ -2,12 +2,6 @@
 const correctUser = "student";
 const correctPass = "dobu123";
 
-// PAGE PROTECTION
-if (!window.location.pathname.includes("index.html")) {
-  if (localStorage.getItem("loggedIn") !== "true") {
-    window.location.href = "index.html";
-  }
-}
 
 // LOGIN
 function login() {
@@ -25,17 +19,22 @@ function login() {
 // LOGOUT
 function logout() {
   localStorage.removeItem("loggedIn");
-  window.location.href = "index.html";
+  window.location.href = "home.html";
 }
 
 // BOOK CLASS
 function bookClass(day, type, time) {
-  const booking = { day, type, time };
-
   let bookings = JSON.parse(localStorage.getItem("bookings")) || [];
+
+  const alreadyBooked = bookings.some(b => b.day === day && b.type === type && b.time === time);
+  if (alreadyBooked) {
+    alert("You have already booked this class.");
+    return;
+  }
+
+  const booking = { day, type, time };
   bookings.push(booking);
   localStorage.setItem("bookings", JSON.stringify(bookings));
-
   createReceipt(booking);
   alert("Booked! Receipt downloaded.");
 }
@@ -72,4 +71,52 @@ function createReceipt(booking) {
   link.download = "booking_receipt.png";
   link.href = canvas.toDataURL();
   link.click();
+}
+
+// AUTH STATE
+function applyAuthState() {
+  const loggedIn = localStorage.getItem("loggedIn") === "true";
+
+  // swap nav buttons
+  const authArea = document.getElementById("auth-buttons");
+  if (authArea) {
+        if (loggedIn) {
+      authArea.innerHTML = `
+        <a href="myaccount.html"><button class="btn-logout">MY ACCOUNT</button></a>
+        <button class="btn-logout" onclick="logout()">LOGOUT</button>`;
+    } else {
+      authArea.innerHTML = `
+        <a href="login.html"><button class="btn-logout">LOGIN</button></a>
+        <a href="register.html"><button class="btn-logout">REGISTER</button></a>`;
+    }
+
+  }
+
+  // hide GET STARTED when logged in
+  const getStarted = document.getElementById("get-started-btn");
+  if (getStarted) getStarted.style.display = loggedIn ? "none" : "";
+
+  // hide booking section when not logged in
+  const bookingSection = document.getElementById("booking-section");
+  if (bookingSection) bookingSection.style.display = loggedIn ? "" : "none";
+}
+
+document.addEventListener("DOMContentLoaded", applyAuthState);
+
+//lOGIN FROM MEMBERSHIP PAGE
+function joinNow(plan) {
+  const loggedIn = localStorage.getItem("loggedIn") === "true";
+  if (loggedIn) {
+    localStorage.setItem("membership", plan)
+    window.location.href = "myaccount.html";
+  } else {
+    window.location.href = "login.html";
+  }
+}
+
+//Display Current Membership 
+const membershipDisplay = document.getElementById("membershipDisplay");
+if (membershipDisplay) {
+  const plan = localStorage.getItem("membership");
+  membershipDisplay.innerText = plan ? plan : "No membership yet";
 }

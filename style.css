@@ -155,32 +155,61 @@ body {
   background: var(--text);
   color: #000;
 }
+#auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
 
 .full-width { width: 100%; }
+
+#hero_background
+{
+  background-size: cover;
+  background-position: center;
+  background-image:
+  linear-gradient(to right, 
+      rgba(0,0,0,0.8) 0%,      /* dark on left for text readability */
+      rgba(0,0,0,0.05) 30%,     /* lighter in middle where figure is */
+      rgba(0,0,0,0.3) 100%),   /* slightly darker on right edge */
+  url('Hero Background.png');
+  
+  padding: 100px 100px;
+  min-height: 85vh;
+  margin: 0%;
+  box-sizing: border-box;
+  align-items: center;
+  display: flex;
+  
+}
 
 /* ===== HERO ===== */
 .hero {
   min-height: 100vh;
-  background-image:
-  linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-  url('Hero Background.png');
-  background-size: cover;
-  background-position: center;
-  position: relative;
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 80px 60px 50px;
   overflow: hidden;
-
+  padding: 40px;
 }
 
 
 .hero-content {
   position: relative;
   z-index: 2;
-  max-width: 620px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 60px;
+}
+.hero-text{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  max-width: 550px;
 }
 
 .hero-title {
@@ -204,26 +233,51 @@ body {
   gap: 14px;
   flex-wrap: wrap;
 }
+.hero-photo {
+  flex-shrink: 0;
+  display: flex;
+ 
+  flex-direction: right center;
+  
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-145px); /* move left toward the splash */
+}
+.hero-photo-placeholder{
+  width: 700px;
+  height: 100%;
+  min-height: 720px;
+  min-width:  700px;
+  
+
+}
+
+
 
 /* Belt progression timeline */
 .belt-progression {
   position: relative;
   z-index: 2;
-  margin-top: 70px;
-  padding-top: 30px;
+  margin-top: 0;
+  padding-top: 60px;
+  padding-bottom: 60px;
   border-top: 1px solid var(--border);
+  height: 300px;
 }
 
 .belt-label {
-  font-size: 11px;
-  letter-spacing: 2px;
-  color: var(--text-muted);
-  margin-bottom: 18px;
+  font-size: 30px;
+  font-weight: bolder;
+  
+  letter-spacing: 3px;
+  color: var(--text-light);
+  margin-bottom: 50px;
 }
 
 .belt-timeline {
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .belt-stop {
@@ -231,44 +285,48 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 7px;
-  min-width: 72px;
+  min-width: 30px;;
+  
 }
 
 .belt-dot {
-  width: 18px;
-  height: 18px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   transition: transform 0.2s;
 }
 
-.belt-stop.active .belt-dot {
-  width: 26px;
-  height: 26px;
-  box-shadow: 0 0 14px rgba(255,255,255,0.25);
-}
+
 
 .belt-name {
-  font-size: 9px;
+  font-size: 15px;
   font-weight: 700;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
 }
 
 .belt-rank {
-  font-size: 8px;
+  font-size: 12px;
   color: var(--text-muted);
   letter-spacing: 1px;
+  font-weight: bold;
+  
 }
 
 .belt-line {
   flex: 1;
-  height: 2px;
-  background: var(--border);
-  margin-top: -24px;
+  height: 3px;
+  background: white;
+  margin-top: -30px;
+  width: 10px;
+  opacity: 0.4 ;
+  min-width: 50px;
+  border-color: #888888;
+  box-shadow: 0 0 8px rgba(240, 234, 234, 0.897);
 }
 
 /* ===== ABOUT ===== */
 .about {
-  padding: 90px 60px;
+  padding: 20px 10px;
   background: #0d0d0d;
 }
 
@@ -277,7 +335,8 @@ body {
   gap: 60px;
   align-items: center;
   max-width: 1100px;
-  margin: 0 auto 60px;
+  margin: 0 auto 20px;
+  min-height: 85vh;
 }
 
 .about-text h2 {
@@ -308,8 +367,8 @@ body {
 }
 
 .photo-placeholder {
-  width: 310px;
-  height: 230px;
+  width: 510px;
+  height: 430px;
   background: var(--bg-card);
   display: flex;
   align-items: center;
@@ -317,7 +376,10 @@ body {
   font-size: 11px;
   letter-spacing: 4px;
   color: var(--text-muted);
-  border: 2px solid;
+  border: 2px solid #3ce961;
+  box-shadow: 0 0 15px rgba(23, 223, 16, 0.4),
+              0 0 30px rgba(10, 95, 17, 0.2);
+  
 }
 
 .green-border { border-color: var(--green-belt); }
@@ -325,6 +387,7 @@ body {
 .path-section {
   max-width: 1100px;
   margin: 0 auto;
+  min-height: 50vh;
 }
 
 .path-heading {
@@ -332,6 +395,7 @@ body {
   font-weight: 700;
   letter-spacing: 2px;
   margin-bottom: 22px;
+  padding-bottom: 30px;
 }
 
 .growth-grid {
@@ -345,11 +409,14 @@ body {
   border: 1px solid;
   padding: 28px 20px;
   text-align: center;
+  border-radius: 4px;
+  transition: box-shadow 0.3s;
+  height: 300px;
 }
 
 .growth-icon {
   font-size: 28px;
-  margin-bottom: 12px;
+  margin-bottom: 20px;
 }
 
 .yellow-icon { color: var(--yellow-belt); }
@@ -369,6 +436,116 @@ body {
   color: var(--text-muted);
   line-height: 1.5;
 }
+/* ===== INSTRUCTORS ===== */
+.instructors-section {
+  padding: 4rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.instructors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.instructor-card {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-top: 4px solid #FFC107;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.instructor-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.instructor-card h4 {
+  font-size: 1rem;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.instructor-role {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.instructor-creds {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.instructor-creds li {
+  font-size: 0.8rem;
+  color: #aaa;
+  padding: 0.2rem 0;
+  border-bottom: 1px solid #222;
+}
+
+.instructor-creds li:last-child {
+  border-bottom: none;
+}
+
+/* ===== ADDITIONAL SERVICES ===== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 1.5rem auto 0;
+}
+
+.service-card {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.service-card h4 {
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.service-card p {
+  font-size: 0.8rem;
+  color: #888;
+  margin-bottom: 0.75rem;
+}
+
+.service-price {
+  color: #FFC107;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* btn-orange and btn-brown for membership cards */
+.btn-orange {
+  background: #FF8A00;
+  color: #000;
+  border: none;
+}
+
+.btn-brown {
+  background: #8B5A2B;
+  color: #fff;
+  border: none;
+}
+
 
 /* ===== MEMBERSHIP ===== */
 .membership {
@@ -392,7 +569,7 @@ body {
 
 .pricing-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   max-width: 1100px;
   margin: 0 auto 24px;
@@ -543,10 +720,13 @@ body {
   border-radius: 2px;
 }
 
-.class-tag.beg { background: rgba(255,193,7,0.15);  color: var(--yellow-belt); }
-.class-tag.int { background: rgba(30,136,229,0.15);  color: var(--blue-belt);   }
-.class-tag.adv { background: rgba(255,138,0,0.15);   color: var(--orange-belt); }
-.class-tag.all { background: rgba(46,204,113,0.15);  color: var(--green-belt);  }
+.class-tag.jiu-jitsu    { background: rgba(30,136,229,0.15);  color: #1E88E5; }
+.class-tag.karate       { background: rgba(230,57,70,0.15);   color: #E63946; }
+.class-tag.judo         { background: rgba(255,193,7,0.15);   color: #FFC107; }
+.class-tag.muay-thai    { background: rgba(255,138,0,0.15);   color: #FF8A00; }
+.class-tag.kids         { background: rgba(46,204,113,0.15);  color: #2ECC71; }
+.class-tag.private      { background: rgba(155,89,182,0.15);  color: #9B59B6; }
+.class-tag.open-mat     { background: rgba(136,136,136,0.15); color: #888888; }
 
 /* ===== CONTACT + FORUM ===== */
 .contact-forum {
@@ -742,4 +922,113 @@ body {
   justify-content: space-between;
   max-width: 500px;
   border: 1px solid var(--border);
+}
+/* ===== LOGIN PAGE ===== */
+.login-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: #0a0a0a;
+}
+
+.login-card {
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.login-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  background: #111;
+  border: 1px solid #333;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 0.95rem;
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  outline: none;
+  border-color: #FFC107;
+}
+
+/* ===== LOGIN / REGISTER SHARED ===== */
+.login-card-logo {
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-card-title {
+  text-align: center;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.25rem;
+}
+
+.login-subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 2rem;
+  font-size: 0.85rem;
+}
+
+.login-btn {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.login-footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.login-link {
+  color: #FFC107;
+}
+
+.login-error {
+  color: #e74c3c;
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+}
+
+/* ===== MY ACCOUNT PAGE ===== */
+.account-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+}
+
+.account-grid {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.account-card {
+  flex: 1;
+  background: #181818;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 2rem;
+}
+
+.membership-value {
+  color: #FFC107;
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
+}
+
+#auth-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
