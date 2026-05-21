@@ -243,10 +243,7 @@ body {
 }
 .hero-photo {
   flex-shrink: 0;
-  display: flex;
- 
-  flex-direction: right center;
-  
+  display: flex;  
   align-items: center;
   justify-content: center;
   transform: translateX(-145px); /* move left toward the splash */
